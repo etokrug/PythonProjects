@@ -1,6 +1,0 @@
-From: etokrug@yahoo.com
-To: etokrug@yahoo.com
-Subject: Handling emails with Python
-
-
-This email was sent using Python's smptlib!
