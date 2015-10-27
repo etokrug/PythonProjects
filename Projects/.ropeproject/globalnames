@@ -1,0 +1,16 @@
+Ä}q(U
+verifyfood]q(UfoodIdqUfamilyqUanimalIdqUdbqUnameqUcursorqUhungryIdListq	UhungryAnimalIdq
+U
+hungryNameqU
+hungryListqUanimalqU	animalIdsqUfoodIdsqUhungryAnimalsqeUtesthighscore]qUtestHighScoreqaU	Calculate]q(UApplicationqUappqUrootqeUtest_fileops]qUTestReadWriteFileqaUmanage]Utest_lookin]qUTestLookinDirqaUlibrary]q(UAuthorqUBookqULibraryqeU
+testMaildb]q(UFILESPECq Ucursq!UtestRealEmail_trafficq"Uconnq#UTBLDEFq$eUmysite.urls]q%Uurlpatternsq&aU	highscore]q'U
+scoreTableq(aUtestable]q)(Ucubeq*UTestCubeq+eUmaildb]q,(h!h#Ustoreq-eUtestClassFactory]q.UDBTestq/aUfileops]q0(U
+write_listq1U	read_listq2eU	GUIFrames]q3(hUALLq4hheUmysite.settings]q5(U	TEMPLATESq6UUSE_L10Nq7ULANGUAGE_CODEq8UUSE_TZq9UUSE_I18Nq:U	DATABASESq;U	TIME_ZONEq<U
+STATIC_URLq=UROOT_URLCONFq>UWSGI_APPLICATIONq?UMIDDLEWARE_CLASSESq@UDEBUGqAUALLOWED_HOSTSqBU
+SECRET_KEYqCUBASE_DIRqDUINSTALLED_APPSqEeUgetTheEmails]qF(UfilesqGh UfUnewDirqHeUdatarow]qI(Ur1qJUrowqKeUanimal]qL(UanimalsqMhhUAnimalqNeUmessagetest]qOUDemoCaseqPaU	unittest3]qQ(U	TestTitleqRUtitleqSeU	unittest2]qT(hRhSeUemailReturnModule]qUUemailReturnqVaUmysite]UtestEmailReturn]qWUemailStringTestqXaUmysite.wsgi]qYUapplicationqZaUtexthandler]q[(hhheUadder]q\Uadderq]aUtkgrid]q^(Ucolorgenq_hhheUtest_library]q`UTestLibraryqaaUgrdspan]qb(hh4hheU
+sidebyside]qc(hUweUtest_archiving]qdUTestArchivingqeaU	setupDemo]qfUFileTestqgaUdatabase]qh(UUSERNAMEqiU
+login_infoqjUPASSWORDqkeU	archiving]qlUzarchiveqmaUsettings]qn(U	startDateqoUdaycountqpU
+recipientsqqeUtestjotd]qr(h!U	jotdTableqsUtestJotdqth#U
+emailTablequeU
+unittest2x]qv(hRhSeUexample]qwUExampleqxaUjokes]qyUjokesqzaUjotd]q{(h!UrandomJokeIdSetq|UgetRandomJokeq}UcreateMessagesq~UrandomJokeIdListqh#eUlookin]qÄU	print_lstqÅaUdatatest]qÇ(hhUweightqÉUfmtqÑhheUtestGUI]qÖ(Ucolor_handlerqÜh4Uhandler1qáUhandler2qàUhandler3qâU
+ApplcationqäheUclassFactory]qãU	build_rowqåaU	testadder]qçU	TestAdderqéau.
