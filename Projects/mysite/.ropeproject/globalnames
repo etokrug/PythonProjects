@@ -1,8 +1,9 @@
 €}q(U
-Polls.wsgi]qUapplicationqaUpolls.tests]UPolls]Umysite]Umysite.settings]q(U	TEMPLATESqUUSE_L10NqULANGUAGE_CODEqUUSE_TZqUUSE_I18Nq	U	DATABASESq
+Polls.wsgi]qUapplicationqaUpolls.tests]Umanage]Umysite]Umysite.settings]q(U	TEMPLATESqUUSE_L10NqULANGUAGE_CODEqUUSE_TZqUUSE_I18Nq	U	DATABASESq
 U	TIME_ZONEqU
 STATIC_URLqUROOT_URLCONFqUWSGI_APPLICATIONqUMIDDLEWARE_CLASSESqUDEBUGqUALLOWED_HOSTSqU
-SECRET_KEYqUBASE_DIRqUINSTALLED_APPSqeUpolls.admin]q(UQuestionAdminqUChoiceInLineqeUmanage]U
-Polls.urls]qUurlpatternsqaUpolls.views]Upolls.models]q(UChoiceqUQuestionqeUpolls.migrations]UPolls.settings]q(U	TEMPLATESqUUSE_L10NqULANGUAGE_CODEq UUSE_TZq!UUSE_I18Nq"U	DATABASESq#U	TIME_ZONEq$U
-STATIC_URLq%UROOT_URLCONFq&UWSGI_APPLICATIONq'UMIDDLEWARE_CLASSESq(UDEBUGq)UALLOWED_HOSTSq*U
-SECRET_KEYq+UBASE_DIRq,UINSTALLED_APPSq-eUmysite.urls]q.Uurlpatternsq/aUpolls.migrations.0001_initial]q0U	Migrationq1aUpolls]Umysite.wsgi]q2Uapplicationq3au.
+SECRET_KEYqUBASE_DIRqUINSTALLED_APPSqeU
+Polls.urls]qUurlpatternsqaUmysite.wsgi]qUapplicationqaUPolls]U
+polls.urls]qUurlpatternsqaUpolls.views]q(UindexqUresultsqUdetailqUvoteqeUpolls.models]q (UChoiceq!UQuestionq"eUpolls.migrations]UPolls.settings]q#(U	TEMPLATESq$UUSE_L10Nq%ULANGUAGE_CODEq&UUSE_TZq'UUSE_I18Nq(U	DATABASESq)U	TIME_ZONEq*U
+STATIC_URLq+UROOT_URLCONFq,UWSGI_APPLICATIONq-UMIDDLEWARE_CLASSESq.UDEBUGq/UALLOWED_HOSTSq0U
+SECRET_KEYq1UBASE_DIRq2UINSTALLED_APPSq3eUmysite.urls]q4haUpolls.migrations.0001_initial]q5U	Migrationq6aUpolls]Upolls.admin]q7(UQuestionAdminq8UChoiceInLineq9eu.
