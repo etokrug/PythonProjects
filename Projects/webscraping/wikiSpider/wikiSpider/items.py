@@ -10,9 +10,3 @@ from scrapy import Item, Field
 class Article(Item):
     #define fields for item
     title = Field()
-
-
-class WikispiderItem(scrapy.Item):
-    # define the fields for your item here like:
-    # name = scrapy.Field()
-    pass
