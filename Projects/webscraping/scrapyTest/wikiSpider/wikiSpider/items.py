@@ -5,7 +5,11 @@
 # See documentation in:
 # http://doc.scrapy.org/en/latest/topics/items.html
 
-import scrapy
+from scrapy import Item, Field
+
+class Article(Item):
+    #define fields for item
+    title = Field()
 
 
 class WikispiderItem(scrapy.Item):
