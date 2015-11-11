@@ -10,20 +10,37 @@ SUPPRESS_BS4_WARNING = "lxml"
 SITE = "http://en.wikipedia.org/"
 
 
-random.seed(datetime.datetime.now())
-def getLinks(article, articleUrl):
-    nextURL = urljoin(article, articleUrl)
+pages = set()
+def getLinks(article, pageUrl):
+    global pages
+    nextURL = urljoin(article, pageUrl)
     html = urlopen(nextURL)
     bsObj = bs(html)
-    return bsObj.find("div", {"id":"bodyContent"}).findAll("a", href=re.compile("^(/wiki/)((?!:).)*$"))
+    try:
+        print(bsObj.h1.get_text())
+        print(bsObj.find(id="mw-content-text").findAll("p")[0])
+        print(bsObj.find(id="ca-edit").find("span").find("a").attrs['href'])
+    except AttributeError as e:
+        print("This page is missing something ain't no thang though...")
+    for link in bsObj.findAll("a", href=re.compile("^(/wiki/)")):
+        if 'href' in link.attrs:
+            if link.attrs['href'] not in pages:
+                #it's a new page
+                newPage = link.attrs['href']
+                print("------------\n"+newPage)
+                pages.add(newPage)
+                getLinks(article, newPage)
 
-links = getLinks(SITE, "/wiki/Kevin_Bacon")
+getLinks(SITE, "/wiki/Kevin_Bacon")
 
+#links = getLinks(SITE, "/wiki/Kevin_Bacon")
+
+"""
 while len(links) > 0:
     newArticle = links[random.randint(0, len(links)-1)].attrs["href"]
     print(newArticle)
     links = getLinks(SITE, newArticle)
-
+"""
 
 
 
