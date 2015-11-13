@@ -1,3 +1,8 @@
-from django.shortcuts import render
+from django.http import HttpResponse
+from django.template import RequestContext, loader
 
-# Create your views here.
+
+def friend(request):
+    template = loader.get_template('friend/loginpage.html')
+    context = RequestContext(request)
+    return HttpResponse(template.render(context))
