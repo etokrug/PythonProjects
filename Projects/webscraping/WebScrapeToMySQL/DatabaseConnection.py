@@ -7,10 +7,10 @@ import re
 
 
 SUPPRESS_WARNING = "lxml"
-conn = p.connect(host='127.0.0.1', user='ScrapingUser', passwd="HappyTime", db='scraping')
+conn = p.connect(host='127.0.0.1', user='ScrapingUser', passwd="HappyTime", db='scraping', charset='utf8')
 cur = conn.cursor()
 
-random.seed(datetime.datetime.now(()))
+random.seed(datetime.datetime.now())
 
 
 def store(title, content):
