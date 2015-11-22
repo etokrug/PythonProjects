@@ -87,28 +87,39 @@
 
     function getFriends() {
         console.log('Fetching friends...');
-        FB.api('/me', function(response) {
-            console.log('Friends returned... ' + response.id);
-            document.getElementById("friendslist").innerHTML =
-                    response.id;
+        FB.api('/me',
+                'GET',
+                {'fields':'friends'},
+                function(response) {
+            console.log('Calling...');
+            console.log(response);
+            console.log('Finishing...');
         });
     }
 
     function testInfo() {
         console.log('Get Info\n');
-        FB.api('/me?fields=id,name,email,about,friends,friendlists{members}', function(response) {
+        FB.api('/me?fields=id,name,email,about,user_friends,friends,friendlists', function(response) {
             console.log('Calling...');
             console.log(response);
             console.log(response.id);
             console.log(response.name);
+            console.log(response.user)
             console.log(response.email);
-            console.log(response.about);
+            // console.log(response.about);
             console.log(response.friends);
-            friendsListArray = response.friendlists;
+            friendsListArray = response.friendlists.data;
             listLen = friendsListArray.length;
 
             for (i = 0; i < listLen; i++) {
-                console.log(friendsListArray[i]);
+                callString = '/' + friendsListArray[i].id;
+                FB.api(callString, function(innerResponse) {
+                    console.log(innerResponse.id);
+                    console.log(innerResponse.name);
+                    console.log(innerResponse.list_type);
+
+                });
+                // console.log(friendsListArray[i]);
             }
             console.log('Finishing...');
         });
@@ -122,7 +133,7 @@
   the FB.login() function when clicked.
 -->
 
-<fb:login-button scope="public_profile,email,read_custom_friendlists,user_about_me,email,user_friends" onlogin="checkLoginState();">
+<fb:login-button scope="public_profile,read_custom_friendlists,user_about_me,email,user_friends" onlogin="checkLoginState();">
 </fb:login-button>
 <
 
