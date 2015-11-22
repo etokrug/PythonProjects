@@ -44,7 +44,7 @@
     cookie     : true,  // enable cookies to allow the server to access
                         // the session
     xfbml      : true,  // parse social plugins on this page
-    version    : 'v2.2' // use version 2.2
+    version    : 'v2.5' // use version 2.2
   });
 
   // Now that we've initialized the JavaScript SDK, we call 
@@ -84,18 +84,51 @@
         'Thanks for logging in, ' + response.name + '!';
     });
   }
+
+    function getFriends() {
+        console.log('Fetching friends...');
+        FB.api('/me', function(response) {
+            console.log('Friends returned... ' + response.id);
+            document.getElementById("friendslist").innerHTML =
+                    response.id;
+        });
+    }
+
+    function testInfo() {
+        console.log('Get Info\n');
+        FB.api('/me?fields=id,name,email,about,friends,friendlists{members}', function(response) {
+            console.log('Calling...');
+            console.log(response);
+            console.log(response.id);
+            console.log(response.name);
+            console.log(response.email);
+            console.log(response.about);
+            console.log(response.friends);
+            friendsListArray = response.friendlists;
+            listLen = friendsListArray.length;
+
+            for (i = 0; i < listLen; i++) {
+                console.log(friendsListArray[i]);
+            }
+            console.log('Finishing...');
+        });
+    }
 </script>
 <h1>Test Header</h1>
+
 <!--
   Below we include the Login Button social plugin. This button uses
   the JavaScript SDK to present a graphical Login button that triggers
   the FB.login() function when clicked.
 -->
 
-<fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+<fb:login-button scope="public_profile,email,read_custom_friendlists,user_about_me,email,user_friends" onlogin="checkLoginState();">
 </fb:login-button>
+<
 
 <div id="status">
+</div>
+<div id="friendslist">
 </div>
 
 </body>
