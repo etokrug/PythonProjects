@@ -21,6 +21,7 @@ def getResults(qString, counter = 0, index = 0):
 
     items = responseJson.get("items")
 
+    print(responseJson.get("queries"))
     for i in range(0, len(items)):
         print(items[i].get("formattedUrl"))
 
