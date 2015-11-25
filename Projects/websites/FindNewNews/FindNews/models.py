@@ -6,13 +6,13 @@ from django.utils import timezone
 
 class Project(models.Model):
     pk_project_id = models.AutoField(null=False, primary_key=True, editable=False)
-    fk_user_id_created = models.ForeignKey(User, related_name='project_user_id_created', null=False)
+    fk_p_user_created = models.ForeignKey(User, related_name='fk_p_user_created', null=True)
     project_name = models.CharField(db_index=True, null=False, max_length=255)
     # TODO: Implement fulltext indext in DB Table project
     project_description = models.CharField(max_length=8000)
     date_created = models.DateTimeField(null=False, editable=False)
     date_updated = models.DateTimeField(null=True, editable=False)
-    fk_user_id_updated = models.ForeignKey(User, related_name='project_user_id_updated', null=False)
+    fk_p_user_updated = models.ForeignKey(User, related_name='fk_p_user_updated', null=True)
 
     def save(self):
         if not self.pk_project_id:
@@ -25,7 +25,7 @@ class Project(models.Model):
 
 class SearchEngines(models.Model):
     pk_searchengines_id = models.AutoField(null=False, primary_key=True, editable=False)
-    fk_user_id_created = models.ForeignKey(User, related_name='searchengines_user_id_created', null=False)
+    fk_se_user_created = models.ForeignKey(User, related_name='fk_se_user_created', null=True)
     # The name given to this search either on the site OR just for these purposes
     search_name = models.CharField(db_index=True, null=False, max_length=150)
     # This would be like "google.com"
@@ -39,7 +39,7 @@ class SearchEngines(models.Model):
     # The initial date it was created
     date_created = models.DateTimeField(null=False, editable=False)
     date_updated = models.DateTimeField(null=False, editable=False)
-    fk_user_id_updated = models.ForeignKey(User, 'searchengines_user_id_updated', null=False)
+    fk_se_user_updated = models.ForeignKey(User, related_name='fk_se_user_updated', null=True)
 
     def save(self):
         if not self.pk_searchengines_id:
@@ -50,9 +50,9 @@ class SearchEngines(models.Model):
 
 class ProjectSearches(models.Model):
     pk_projectsearches_id = models.AutoField(null=False, primary_key=True, editable=False)
-    fk_project_id = models.ForeignKey(Project, null=False)
-    fk_engine_id = models.ForeignKey(SearchEngines, null=False)
-    fk_user_id_created = models.ForeignKey(User, related_name='projectsearches_user_id_created', null=False)
+    fk_project = models.ForeignKey(Project, null=False)
+    fk_engine = models.ForeignKey(SearchEngines, null=False)
+    fk_ps_user_created = models.ForeignKey(User, related_name='fk_ps_user_created', null=True)
     title = models.CharField(db_index=True, null=False, max_length=300)
     # TODO: Implement fulltext indext in DB Table projectsearches
     # This should take space delimited input
@@ -69,7 +69,7 @@ class ProjectSearches(models.Model):
     # Date the initial search was run
     search_date = models.DateTimeField(null=False, editable=False)
     updated_date = models.DateTimeField(null=False, editable=False)
-    fk_user_id_updated = models.ForeignKey(User, related_name='projectsearches_user_id_updated', null=False)
+    fk_ps_user_updated = models.ForeignKey(User, related_name='fk_ps_user_updated', null=True)
 
     def save(self):
         if not self.pk_projectsearches_id:
@@ -95,8 +95,8 @@ class LinkUrls(models.Model):
 
 class SearchResults(models.Model):
     pk_searchresults_id = models.AutoField(null=False, primary_key=True, editable=False)
-    fk_projectsearches_id = models.ForeignKey(ProjectSearches, null=False)
-    fk_linkurls_id = models.ForeignKey(LinkUrls, null=False)
+    fk_projectsearches = models.ForeignKey(ProjectSearches, null=False)
+    fk_linkurls = models.ForeignKey(LinkUrls, null=False)
     title = models.CharField(db_index=True, null=True, max_length=500)
     # TODO: Implement fulltext index in DB
     snippet = models.CharField(null=True, max_length=8000)
