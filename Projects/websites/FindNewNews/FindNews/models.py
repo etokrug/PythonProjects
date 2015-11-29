@@ -109,14 +109,30 @@ class SearchResults(models.Model):
     page_map = models.CharField(null=True, max_length=8000)
 
 
+class LookUpVariables(models.Model):
+    pk_lookupvariables_id = models.AutoField(null=False, primary_key=True, editable=False)
+    fk_searchengines = models.ForeignKey(SearchEngines, null=True)
+    variable_name = models.CharField(null=False, max_length=255, db_index=True)
+    variable_description = models.CharField(null=True, max_length=1000)
+    deprecated_luv_variable = models.BooleanField(default=False, null=False)
+    fk_luv_user_created = models.ForeignKey(User, related_name='fk_luv_user_created', null=True)
+    fk_luv_user_updated = models.ForeignKey(User, related_name='fk_luv_user_updated', null=True)
+    date_created = models.DateTimeField(null=False, editable=False)
+    date_updated = models.DateTimeField(null=False, editable=False)
+
+    def save(self):
+        if not self.pk_lookupvariables_id:
+            self.date_created = timezone.now()
+        self.date_updated = timezone.now()
+
+
 class LookUps(models.Model):
     pk_lookups_id = models.AutoField(null=False, primary_key=True, editable=False)
-    variable_name = models.CharField(null=False, max_length=255, db_index=True)
+    fk_lookupvariables = models.ForeignKey(LookUpVariables, null=True)
     # TODO: make sure any calls to this account for a no display_name error
     display_name = models.CharField(null=True, max_length=255)
     url_variable = models.CharField(null=False, max_length=255, db_index=True)
-    variable_description = models.CharField(null=True, max_length=1000)
-    deprecated_variable = models.BooleanField(default=False, null=False)
+    deprecated_lu_variable = models.BooleanField(default=False, null=False)
     fk_lu_user_created = models.ForeignKey(User, related_name='fk_lu_user_created', null=True)
     fk_lu_user_updated = models.ForeignKey(User, related_name='fk_lu_user_updated', null=True)
     date_created = models.DateTimeField(null=False, editable=False)
@@ -126,16 +142,4 @@ class LookUps(models.Model):
         if not self.pk_lookups_id:
             self.date_created = timezone.now()
         self.date_updated = timezone.now()
-
-
-
-
-
-
-
-
-
-
-
-
 

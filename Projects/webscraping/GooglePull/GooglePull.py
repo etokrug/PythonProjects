@@ -11,9 +11,10 @@ def getResults(qString, counter = 0, index = 0):
 
     key = 'AIzaSyAZGjG38gajQG8Cvr3orfPoqMwnPVjJOy8'
     cseid = '014013134609030703942:ic0zbyqoame'
-    url = 'https://www.googleapis.com/customsearch/v1?key={0}&cx={1}&q={2}{3}'\
+    url = 'https://www.googleapis.com/customsearch/v1?&q={2}{3}&key={0}&cx={1}'\
         .format(key, cseid, qString, start)
 
+    print('\n\n' + url + '\n\n')
     response = urlopen(url).read().decode('utf-8')
     responseJson = json.loads(response)
 

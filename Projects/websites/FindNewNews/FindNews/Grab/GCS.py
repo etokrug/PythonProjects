@@ -7,7 +7,7 @@ import json
 from urllib.request import urlopen
 
 
-def getResults(qString, counter = 0, index = 0):
+def getResults(qString, counter=0, index=0):
     counter += 1
     if index > 0:
         start = '&start=%d' % index
