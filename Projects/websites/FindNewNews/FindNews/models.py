@@ -3,7 +3,6 @@ from django.contrib.auth.models import User
 from django.utils import timezone
 
 
-
 class Project(models.Model):
     pk_project_id = models.AutoField(null=False, primary_key=True, editable=False)
     fk_p_user_created = models.ForeignKey(User, related_name='fk_p_user_created', null=True)
@@ -23,6 +22,7 @@ class Project(models.Model):
     #Reference
     #http://www.b-list.org/weblog/2006/nov/02/django-tips-auto-populated-fields/
 
+
 class SearchEngines(models.Model):
     pk_searchengines_id = models.AutoField(null=False, primary_key=True, editable=False)
     fk_se_user_created = models.ForeignKey(User, related_name='fk_se_user_created', null=True)
@@ -32,7 +32,7 @@ class SearchEngines(models.Model):
     search_site = models.CharField(null=False, max_length=300)
     # This would be the api used like google custom search/google site search/bing etc
     search_api = models.CharField(max_length=300)
-    # The key needed/issued to access the api
+    # The key needed/issued to access the api (ie custom search engine ID to use)
     search_key = models.CharField(max_length=300)
     # The api key if you need to register an app with the site
     api_key = models.CharField(max_length=300)
@@ -54,10 +54,16 @@ class ProjectSearches(models.Model):
     fk_engine = models.ForeignKey(SearchEngines, null=False)
     fk_ps_user_created = models.ForeignKey(User, related_name='fk_ps_user_created', null=True)
     title = models.CharField(db_index=True, null=False, max_length=300)
-    # TODO: Implement fulltext indext in DB Table projectsearches
+    # TODO: Implement fulltext index in DB Table projectsearches
     # This should take space delimited input
     search_terms = models.CharField(null=False, max_length=1000)
+    # language refers to lr in GCSUrlBuilder
     language = models.CharField(null=True, max_length=50)
+    # country refers to cr in GCSUrlBuilder
+    country = models.CharField(null=True, max_length=50)
+    googlehost = models.CharField(null=True, max_length=100)
+    # Refers to gl in GCSUrlBuilder
+    google_gl = models.CharField(null=True, max_length=100)
     # This should take space delimited input
     exact_terms = models.CharField(null=True, max_length=1000)
     # This should take space delimited input
@@ -101,6 +107,26 @@ class SearchResults(models.Model):
     # TODO: Implement fulltext index in DB
     snippet = models.CharField(null=True, max_length=8000)
     page_map = models.CharField(null=True, max_length=8000)
+
+
+class LookUps(models.Model):
+    pk_lookups_id = models.AutoField(null=False, primary_key=True, editable=False)
+    variable_name = models.CharField(null=False, max_length=255, db_index=True)
+    # TODO: make sure any calls to this account for a no display_name error
+    display_name = models.CharField(null=True, max_length=255)
+    url_variable = models.CharField(null=False, max_length=255, db_index=True)
+    variable_description = models.CharField(null=True, max_length=1000)
+    deprecated_variable = models.BooleanField(default=False, null=False)
+    fk_lu_user_created = models.ForeignKey(User, related_name='fk_lu_user_created', null=True)
+    fk_lu_user_updated = models.ForeignKey(User, related_name='fk_lu_user_updated', null=True)
+    date_created = models.DateTimeField(null=False, editable=False)
+    date_updated = models.DateTimeField(null=False, editable=False)
+
+    def save(self):
+        if not self.pk_lookups_id:
+            self.date_created = timezone.now()
+        self.date_updated = timezone.now()
+
 
 
 

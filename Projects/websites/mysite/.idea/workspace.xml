@@ -2,6 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="aa501bfb-8acb-4532-bb00-eabf208938d1" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../FindNewNews/FindNews/Grab/GCS.py" afterPath="$PROJECT_DIR$/../FindNewNews/FindNews/Grab/GCS.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../FindNewNews/FindNews/Grab/GCSVariables.py" afterPath="$PROJECT_DIR$/../FindNewNews/FindNews/Grab/GCSVariables.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../FindNewNews/FindNews/Grab/GCSUrlBuilder.py" afterPath="$PROJECT_DIR$/../FindNewNews/FindNews/Grab/GCSUrlBuilder.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../FindNewNews/FindNews/Grab/GCSVariables.py" afterPath="$PROJECT_DIR$/../FindNewNews/FindNews/Grab/GCSVariables.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../FindNewNews/FindNews/NewsGrab.py" afterPath="$PROJECT_DIR$/../FindNewNews/FindNews/NewsGrab.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../FindNewNews/FindNews/Grab/__init__.py" afterPath="$PROJECT_DIR$/../FindNewNews/FindNews/Grab/__init__.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../FindNewNews/FindNews/models.py" afterPath="$PROJECT_DIR$/../FindNewNews/FindNews/models.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../FindNewNews/FindNewNews/settings.py" afterPath="$PROJECT_DIR$/../FindNewNews/FindNewNews/settings.py" />
     </list>

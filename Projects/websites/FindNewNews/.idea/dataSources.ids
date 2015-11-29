@@ -7,6 +7,97 @@
     </database-info>
     <case-sensitivity plain-identifiers="exact" quoted-identifiers="exact"/>
     <schema name="" catalog="FindNewNews"/>
+    <table name="FindNews_linkurls" schema="" catalog="FindNewNews" type="TABLE">
+      <column name="pk_linkurls_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="base_url" sqlType="VARCHAR" precision="400" scale="0" nullable="false" jdbcType="12"/>
+      <column name="path_url" sqlType="VARCHAR" precision="1600" scale="0" nullable="false" jdbcType="12"/>
+      <column name="country" sqlType="VARCHAR" precision="300" scale="0" nullable="true" jdbcType="12"/>
+      <column name="date_first_searched" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="pk_linkurls_id"/>
+      <exported-key name="D759c26fdb44f1093494b6dca4fd7234" table="FindNews_searchresults" schema="" catalog="FindNewNews" columns="fk_linkurls_id"/>
+      <index name="FindNews_linkurls_33fc218c" unique="false" columns="path_url"/>
+      <index name="FindNews_linkurls_63769eef" unique="false" columns="base_url"/>
+    </table>
+    <table name="FindNews_project" schema="" catalog="FindNewNews" type="TABLE">
+      <column name="pk_project_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="project_name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="project_description" sqlType="VARCHAR" precision="8000" scale="0" nullable="false" jdbcType="12"/>
+      <column name="date_created" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="date_updated" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="fk_p_user_created_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="fk_p_user_updated_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="pk_project_id"/>
+      <foreign-key name="FindNews_p_fk_p_user_created_id_519c67f258f6035d_fk_auth_user_id" columns="fk_p_user_created_id" ref-table="auth_user" ref-schema="" ref-catalog="FindNewNews" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FindNews_p_fk_p_user_updated_id_2747274389d1b2f7_fk_auth_user_id" columns="fk_p_user_updated_id" ref-table="auth_user" ref-schema="" ref-catalog="FindNewNews" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="c7409ccb42dd1167b0e6ce02ad1645b6" table="FindNews_projectsearches" schema="" catalog="FindNewNews" columns="fk_project_id"/>
+      <index name="FindNews_p_fk_p_user_created_id_519c67f258f6035d_fk_auth_user_id" unique="false" columns="fk_p_user_created_id"/>
+      <index name="FindNews_p_fk_p_user_updated_id_2747274389d1b2f7_fk_auth_user_id" unique="false" columns="fk_p_user_updated_id"/>
+      <index name="FindNews_project_ff68957f" unique="false" columns="project_name"/>
+    </table>
+    <table name="FindNews_projectsearches" schema="" catalog="FindNewNews" type="TABLE">
+      <column name="pk_projectsearches_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="title" sqlType="VARCHAR" precision="300" scale="0" nullable="false" jdbcType="12"/>
+      <column name="search_terms" sqlType="VARCHAR" precision="1000" scale="0" nullable="false" jdbcType="12"/>
+      <column name="language" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
+      <column name="exact_terms" sqlType="VARCHAR" precision="1000" scale="0" nullable="true" jdbcType="12"/>
+      <column name="exclude_terms" sqlType="VARCHAR" precision="1000" scale="0" nullable="true" jdbcType="12"/>
+      <column name="date_restrict" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="search_time" sqlType="DOUBLE" precision="22" scale="0" nullable="true" jdbcType="8"/>
+      <column name="total_results" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="search_date" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="updated_date" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="fk_engine_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="fk_project_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="fk_ps_user_created_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="fk_ps_user_updated_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="country" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
+      <column name="google_gl" sqlType="VARCHAR" precision="100" scale="0" nullable="true" jdbcType="12"/>
+      <column name="googlehost" sqlType="VARCHAR" precision="100" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="pk_projectsearches_id"/>
+      <foreign-key name="D8daedc0f07f69780e1eef43a2590676" columns="fk_engine_id" ref-table="FindNews_searchengines" ref-schema="" ref-catalog="FindNewNews" ref-columns="pk_searchengines_id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FindNews__fk_ps_user_updated_id_501b1a0012bf7bf1_fk_auth_user_id" columns="fk_ps_user_updated_id" ref-table="auth_user" ref-schema="" ref-catalog="FindNewNews" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FindNews_p_fk_ps_user_created_id_d4d1f294941468b_fk_auth_user_id" columns="fk_ps_user_created_id" ref-table="auth_user" ref-schema="" ref-catalog="FindNewNews" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="c7409ccb42dd1167b0e6ce02ad1645b6" columns="fk_project_id" ref-table="FindNews_project" ref-schema="" ref-catalog="FindNewNews" ref-columns="pk_project_id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="bafa1ceb921ed9a3d2eb965560bb5a2f" table="FindNews_searchresults" schema="" catalog="FindNewNews" columns="fk_projectsearches_id"/>
+      <index name="FindNews_projectsearches_09e4e0f3" unique="false" columns="fk_ps_user_updated_id"/>
+      <index name="FindNews_projectsearches_0fcf80fd" unique="false" columns="fk_project_id"/>
+      <index name="FindNews_projectsearches_ba8a7c37" unique="false" columns="fk_engine_id"/>
+      <index name="FindNews_projectsearches_d5d3db17" unique="false" columns="title"/>
+      <index name="FindNews_projectsearches_f8c12c7c" unique="false" columns="fk_ps_user_created_id"/>
+    </table>
+    <table name="FindNews_searchengines" schema="" catalog="FindNewNews" type="TABLE">
+      <column name="pk_searchengines_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="search_name" sqlType="VARCHAR" precision="150" scale="0" nullable="false" jdbcType="12"/>
+      <column name="search_site" sqlType="VARCHAR" precision="300" scale="0" nullable="false" jdbcType="12"/>
+      <column name="search_api" sqlType="VARCHAR" precision="300" scale="0" nullable="false" jdbcType="12"/>
+      <column name="search_key" sqlType="VARCHAR" precision="300" scale="0" nullable="false" jdbcType="12"/>
+      <column name="api_key" sqlType="VARCHAR" precision="300" scale="0" nullable="false" jdbcType="12"/>
+      <column name="date_created" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="date_updated" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="fk_se_user_created_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="fk_se_user_updated_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="pk_searchengines_id"/>
+      <foreign-key name="FindNews__fk_se_user_created_id_38d968b64a61d95b_fk_auth_user_id" columns="fk_se_user_created_id" ref-table="auth_user" ref-schema="" ref-catalog="FindNewNews" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FindNews__fk_se_user_updated_id_1205df979acac684_fk_auth_user_id" columns="fk_se_user_updated_id" ref-table="auth_user" ref-schema="" ref-catalog="FindNewNews" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="D8daedc0f07f69780e1eef43a2590676" table="FindNews_projectsearches" schema="" catalog="FindNewNews" columns="fk_engine_id"/>
+      <index name="FindNews__fk_se_user_created_id_38d968b64a61d95b_fk_auth_user_id" unique="false" columns="fk_se_user_created_id"/>
+      <index name="FindNews__fk_se_user_updated_id_1205df979acac684_fk_auth_user_id" unique="false" columns="fk_se_user_updated_id"/>
+      <index name="FindNews_searchengines_69418217" unique="false" columns="search_name"/>
+    </table>
+    <table name="FindNews_searchresults" schema="" catalog="FindNewNews" type="TABLE">
+      <column name="pk_searchresults_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="title" sqlType="VARCHAR" precision="500" scale="0" nullable="true" jdbcType="12"/>
+      <column name="snippet" sqlType="VARCHAR" precision="8000" scale="0" nullable="true" jdbcType="12"/>
+      <column name="page_map" sqlType="VARCHAR" precision="8000" scale="0" nullable="true" jdbcType="12"/>
+      <column name="fk_linkurls_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="fk_projectsearches_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="pk_searchresults_id"/>
+      <foreign-key name="D759c26fdb44f1093494b6dca4fd7234" columns="fk_linkurls_id" ref-table="FindNews_linkurls" ref-schema="" ref-catalog="FindNewNews" ref-columns="pk_linkurls_id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="bafa1ceb921ed9a3d2eb965560bb5a2f" columns="fk_projectsearches_id" ref-table="FindNews_projectsearches" ref-schema="" ref-catalog="FindNewNews" ref-columns="pk_projectsearches_id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="bafa1ceb921ed9a3d2eb965560bb5a2f" unique="false" columns="fk_projectsearches_id"/>
+      <index name="D759c26fdb44f1093494b6dca4fd7234" unique="false" columns="fk_linkurls_id"/>
+      <index name="FindNews_searchresults_d5d3db17" unique="false" columns="title"/>
+    </table>
     <table name="auth_group" schema="" catalog="FindNewNews" type="TABLE">
       <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
       <column name="name" sqlType="VARCHAR" precision="80" scale="0" nullable="false" jdbcType="12"/>
@@ -49,6 +140,12 @@
       <column name="is_active" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6"/>
       <column name="date_joined" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
       <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="FindNews_p_fk_p_user_created_id_519c67f258f6035d_fk_auth_user_id" table="FindNews_project" schema="" catalog="FindNewNews" columns="fk_p_user_created_id"/>
+      <exported-key name="FindNews_p_fk_p_user_updated_id_2747274389d1b2f7_fk_auth_user_id" table="FindNews_project" schema="" catalog="FindNewNews" columns="fk_p_user_updated_id"/>
+      <exported-key name="FindNews__fk_ps_user_updated_id_501b1a0012bf7bf1_fk_auth_user_id" table="FindNews_projectsearches" schema="" catalog="FindNewNews" columns="fk_ps_user_updated_id"/>
+      <exported-key name="FindNews_p_fk_ps_user_created_id_d4d1f294941468b_fk_auth_user_id" table="FindNews_projectsearches" schema="" catalog="FindNewNews" columns="fk_ps_user_created_id"/>
+      <exported-key name="FindNews__fk_se_user_created_id_38d968b64a61d95b_fk_auth_user_id" table="FindNews_searchengines" schema="" catalog="FindNewNews" columns="fk_se_user_created_id"/>
+      <exported-key name="FindNews__fk_se_user_updated_id_1205df979acac684_fk_auth_user_id" table="FindNews_searchengines" schema="" catalog="FindNewNews" columns="fk_se_user_updated_id"/>
       <exported-key name="auth_user_groups_user_id_2ac180a493fb50ba_fk_auth_user_id" table="auth_user_groups" schema="" catalog="FindNewNews" columns="user_id"/>
       <exported-key name="auth_user_user_permissi_user_id_2de8518c422e8634_fk_auth_user_id" table="auth_user_user_permissions" schema="" catalog="FindNewNews" columns="user_id"/>
       <exported-key name="django_admin_log_user_id_23840e8b1e086c71_fk_auth_user_id" table="django_admin_log" schema="" catalog="FindNewNews" columns="user_id"/>
