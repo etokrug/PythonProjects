@@ -19,6 +19,9 @@ class Project(models.Model):
         self.date_updated = timezone.now()
         super(Project, self).save()
 
+    def __str__(self):
+        return self.project_name
+
     #Reference
     #http://www.b-list.org/weblog/2006/nov/02/django-tips-auto-populated-fields/
 
@@ -46,6 +49,9 @@ class SearchEngines(models.Model):
             self.date_created = timezone.now()
         self.date_updated = timezone.now()
         super(SearchEngines, self).save()
+
+    def __str__(self):
+        return self.search_name
 
 
 class ProjectSearches(models.Model):
