@@ -27,7 +27,10 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/1.8/howto/static-files/
 
+STATIC_URL = '/static/'
 # Application definition
 
 INSTALLED_APPS = (
@@ -39,6 +42,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'FindNews',
     'twitter_bootstrap',
+
 )
 
 MIDDLEWARE_CLASSES = (
@@ -103,7 +107,4 @@ USE_L10N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.8/howto/static-files/
 
-STATIC_URL = '/static/'

@@ -45,3 +45,5 @@ Temporary Items
 # Home system
 # /Projects/mysite/mysite/settings.py
 /.idea
+/Projects/websites/FindNewNews/FindNews/static/FindNews/bootstrap-3.3.6/
+/Projects/websites/FindNewNews/FindNews/static/FindNews/jquery-2.1.4.min.js

@@ -1,0 +1,14 @@
+body {
+  padding-top: 50px;
+}
+.info-section {
+  padding: 40px 15px;
+  text-align: left;
+  background-color: #009999;
+}
+
+.form-section {
+  padding: 40px 15px;
+  text-align: left;
+  border: thin;
+}
