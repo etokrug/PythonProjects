@@ -1,17 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Create Project</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block pagetitle %}Create Project{% endblock %}
+{% block title %}Create a New Project{% endblock %}
+{% block primary %}
+    <h2> Some additional information</h2>
+    <p> Here's some additional instructions </p>
+{% endblock %}
+{% block seconday %}
     {% if search_engines %}
+        <h2>Search Engines:</h2>
         <ul>
             {% for ng in search_engines %}
                 <li>{{ ng.search_name }}</li>
             {% endfor %}
         </ul>
-
     {% endif %}
-</body>
-</html>
+{% endblock %}
