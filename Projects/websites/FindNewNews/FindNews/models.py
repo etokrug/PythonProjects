@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
+from FindNewNews.extras import CharNullField
 
 
 class Project(models.Model):
@@ -8,7 +9,7 @@ class Project(models.Model):
     fk_p_user_created = models.ForeignKey(User, related_name='fk_p_user_created', null=True)
     project_name = models.CharField(db_index=True, null=False, max_length=255)
     # TODO: Implement fulltext indext in DB Table project
-    project_description = models.CharField(max_length=8000)
+    project_description = CharNullField(max_length=8000, null=True, blank=True)
     date_created = models.DateTimeField(null=False, editable=False)
     date_updated = models.DateTimeField(null=True, editable=False)
     fk_p_user_updated = models.ForeignKey(User, related_name='fk_p_user_updated', null=True)

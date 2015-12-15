@@ -10,8 +10,12 @@ class NewProjectForm(ModelForm):
             'project_name': 'Project Name',
         }
         widgets = {
+            'project_name': TextInput(attrs={
+                'required': True,
+            }),
             'project_description': Textarea(attrs={
                 'rows': 8,
                 'cols': 40,
+                'required': False,
             }),
         }
