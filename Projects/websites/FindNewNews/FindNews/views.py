@@ -13,15 +13,24 @@ def createproject(request):
         # search_engines = SearchEngines.objects.all()
         form = NewProjectForm(request.POST)
         if form.is_valid():
-            pName = form.save()
-            HttpResponseRedirect('/Submitted/')
-            print("If block, saved")
+            # pName = form.save()
+            pForm, created = Project.objects.get_or_create(**form.cleaned_data)
+            if created:
+                HttpResponseRedirect('/Submitted/')
+                print("Submission PASSED")
+            else:
+                HttpResponse('/SubmissionFailed/')
+                print("Submission FAILED")
     # context = RequestContext(request, {'search_engines': search_engines,})
     else:
         form = NewProjectForm()
         print("Else block - New form")
     return render(request, 'FindNews/createproject.html', {'form': form})
 
+
 def submitted(request):
     return render(request, 'FindNews/submitted.html')
 
+
+def submissionfailed(request):
+    return render(request, 'FindNews/submissionfailed.html')

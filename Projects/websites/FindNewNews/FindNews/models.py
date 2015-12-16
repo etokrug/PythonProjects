@@ -14,7 +14,7 @@ class Project(models.Model):
     date_updated = models.DateTimeField(null=True, editable=False)
     fk_p_user_updated = models.ForeignKey(User, related_name='fk_p_user_updated', null=True)
 
-    def save(self):
+    def save(self, **kwargs):
         if not self.pk_project_id:
             self.date_created = timezone.now()
         self.date_updated = timezone.now()

@@ -60,7 +60,7 @@
     <table name="FindNews_project" schema="" catalog="FindNewNews" type="TABLE">
       <column name="pk_project_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
       <column name="project_name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
-      <column name="project_description" sqlType="VARCHAR" precision="8000" scale="0" nullable="false" jdbcType="12"/>
+      <column name="project_description" sqlType="VARCHAR" precision="8000" scale="0" nullable="true" jdbcType="12"/>
       <column name="date_created" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
       <column name="date_updated" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
       <column name="fk_p_user_created_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
