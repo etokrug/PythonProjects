@@ -14,21 +14,25 @@ def createproject(request):
         form = NewProjectForm(request.POST)
         if form.is_valid():
             # pName = form.save()
-            pForm, created = Project.objects.get_or_create(**form.cleaned_data)
+            test = form.cleaned_data
+            projName = test.get('project_name')
+            pForm, created = Project.objects.get_or_create(project_name=projName)
             if created:
-                HttpResponseRedirect('/Submitted/')
+                # HttpResponseRedirect('/Submitted/')
                 print("Submission PASSED")
+                submitted(request)
             else:
-                HttpResponse('/SubmissionFailed/')
+                # HttpResponse('/SubmissionFailed/')
                 print("Submission FAILED")
+                submissionfailed(request)
     # context = RequestContext(request, {'search_engines': search_engines,})
     else:
         form = NewProjectForm()
         print("Else block - New form")
-    return render(request, 'FindNews/createproject.html', {'form': form})
+        return render(request, 'FindNews/createproject.html', {'form': form})
 
 
-def submitted(request):
+def submitted(request): # TODO: Create one template that takes the bool created from the createproject template boi
     return render(request, 'FindNews/submitted.html')
 
 
