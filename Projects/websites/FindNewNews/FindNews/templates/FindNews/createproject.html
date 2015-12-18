@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
-{% block pagetitle %}Create Project{% endblock %}
-{% block title %}Create a New Project{% endblock %}
+{% block pagetitle %}Create Project - {{ current_user }}{% endblock %}
+{% block title %}Create a New Project - {{ current_user }}{% endblock %}
 {% block primary %}
     <h2> Some additional information</h2>
     <p> Here's some additional instructions </p>

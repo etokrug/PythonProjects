@@ -18,16 +18,23 @@ def createproject(request):
             projName = test.get('project_name')
             pForm, created = Project.objects.get_or_create(project_name=projName)
             if created:
+                # TODO: Get user credentials and pass here.
                 projDesc = test.get('project_description')
-            submitted(request, created)
+            return submitted(request, created)
     # context = RequestContext(request, {'search_engines': search_engines,})
     else:
         form = NewProjectForm()
         print("Else block - New form")
-        return render(request, 'FindNews/createproject.html', {'form': form})
+        return render(request, 'FindNews/createproject.html', {'form': form, 'current_user':request.user.username})
 
 
 def submitted(request, created):
-    return render(request, 'FindNews/submitted.html', {'created': created})
+    if created:
+        title = 'Entry Submitted'
+        message = 'Entry did not exist in system and was created'
+    else:
+        title = 'Entry Failed'
+        message = 'Entry already in system - Submission Failed'
+    return render(request, 'FindNews/submitted.html', {'title':title, 'message':message, 'current_user':request.user.username})
 
 

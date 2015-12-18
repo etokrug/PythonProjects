@@ -1,11 +1,6 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
-{% if created %}
-    {% block pagetitle %}Entry Submitted{% endblock %}
-    {% block title %}Entry Submitted{% endblock %}
-    {% block primary %}Entry did not exist in system and was created{% endblock %}
-{% else %}
-    {% block pagetitle %}Entry Failed{% endblock %}
-    {% block title %}Entry Failed{% endblock %}
-    {% block primary %}Entry already in system - submission failed{% endblock %}
-{% endif %}
+{% block pagetitle %}{{ title }} - {{ current_user }}{% endblock %}
+{% block title %}{{ title }} - {{ current_user }}{% endblock %}
+{% block primary %}{{ message }}{% endblock %}
+
