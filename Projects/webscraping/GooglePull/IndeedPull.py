@@ -11,7 +11,7 @@ conn = p.connect(host='local.dev', user='ScrapingUser', passwd='HappyTime', db='
 cur = conn.cursor()
 
 
-def getResults(qString, location, index=1, counter=0):
+def getResults(qString, location, candidate="General", index=1, counter=0):
     # This is the main URL for the indeed.com API Call
     mainUrl = "http://api.indeed.com/ads/apisearch?"
     # This is the key you get when you register with them for API Calls
@@ -49,11 +49,11 @@ def getResults(qString, location, index=1, counter=0):
         results = responseJson.get("results")
         # Loop through each object in the JSON results obj and store it in the DB
         for i in range(0, len(results)):
-            storeJob(qString, results[i], counter)
+            storeJob(qString, candidate, results[i], counter)
             # Increase the object counter
             counter += 1
         # Recursively call the getResults function passing the counter in
-        getResults(qString, location, newIndex, counter)
+        getResults(qString, location, candidate, newIndex, counter)
         # Return back using counter
         return counter
 
@@ -90,7 +90,7 @@ def google_url_escaping(value):
     return returnValue
 
 
-def storeJob(terms, jsonObj, counter):
+def storeJob(terms, candidate, jsonObj, counter):
     title = ''
     counter += 1
     try:
@@ -105,12 +105,13 @@ def storeJob(terms, jsonObj, counter):
         job_expired_at_search = jsonObj.get("expired")
         summary = sqlPrepare(getJobSummary(jsonObj.get("url")))
         search_date = sqlPrepare(datetime.now())
+        candidate_name = sqlPrepare(candidate)
 
         queryString = "INSERT INTO Jobs (search_terms, title, company, snippet, location, posting_date, " \
-                      "indeed_url, job_expired_at_search, summary, search_date) " \
-                      "VALUES ({0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, {8}, {9});"\
+                      "indeed_url, job_expired_at_search, summary, search_date, candidate_name) " \
+                      "VALUES ({0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, {8}, {9}, {10});"\
             .format(search_terms, title, company, snippet, location, posting_date, indeed_url,
-                    job_expired_at_search, summary, search_date)
+                    job_expired_at_search, summary, search_date, candidate_name)
         try:
             cur.execute(queryString)
             cur.connection.commit()
@@ -132,9 +133,10 @@ def sqlPrepare(insertObj):
     return "'" + returnString + "'"
 
 try:
-    q = "Python Developer"
-    loc = "Portland, OR"
-    getResults(q, loc)
+    q = ""
+    loc = ""
+    cand = ""
+    getResults(q, loc, cand)
 finally:
     cur.close()
     conn.close()

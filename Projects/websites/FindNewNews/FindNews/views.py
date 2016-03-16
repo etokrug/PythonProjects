@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
+from django.contrib import messages
 from django.core.urlresolvers import reverse
 from django.template import RequestContext, loader
 from .models import SearchEngines, Project
@@ -20,6 +21,7 @@ def createproject(request):
             if created:
                 # TODO: Get user credentials and pass here.
                 projDesc = test.get('project_description')
+                messages.add_message(request, messages.SUCCESS, 'Thanks for creating a project!')
             return submitted(request, created)
     # context = RequestContext(request, {'search_engines': search_engines,})
     else:

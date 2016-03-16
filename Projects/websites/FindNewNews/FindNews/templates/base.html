@@ -32,6 +32,18 @@
         </div><!--/.nav-collapse -->
       </div>
     </nav>
+    {% if messages %}
+        <div class="row">
+            <div class="small">
+                {% for message in messages %}
+                    <div data-alert class="alert-info {{ message.tags }} radius">
+                        {{ message }}
+                        <a href="#" class="close">&times;</a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
     <div class="container">
         <div id="content">
             <div class="info-section" id="primary">
