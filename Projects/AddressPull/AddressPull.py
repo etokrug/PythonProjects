@@ -94,7 +94,7 @@ class FullAddress:
                 self.census_tract = None
 
     def __str__(self):
-        return "{0},{1},{2},{3}{4}".format(self.street, self.city, self.state, self.zipcode, self.census_tract)
+        return "{0},{1},{2},{3},{4}".format(self.street, self.city, self.state, self.zipcode, self.census_tract)
 
     def as_list(self):
         return [self.street, self.city, self.state, self.zipcode, self.census_tract]
